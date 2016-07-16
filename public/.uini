@@ -1,0 +1,1 @@
+open_basedir="C:\upupw\htdocs\CourseServer;C:\upupw\Guard\;C:\upupw\phpmyadmin\;C:\upupw\temp\;C:\WINDOWS\Temp\"
