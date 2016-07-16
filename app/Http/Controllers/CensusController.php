@@ -13,15 +13,23 @@ use Illuminate\Database\QueryException;
 
 class CensusController extends Controller
 {
-    public function studentInfo()
+    public function studentInfo(Request $request)
     {
-        // public_path 函数返回 public 目录的绝对路径
-        $student_dir = public_path() . "\data\studentInfo.txt";
-        // var_dump() 打印变量的相关信息
-        //var_dump($student_dir);
-        $studentFile = fopen($student_dir, "r");
-        while(!feof($studentFile)) {
-            $str = fgets($studentFile);
+        // 使用 hasFile 方法判断文件在请求中是否存在
+        if (!$request->hasFile('studentFile')) {
+            return redirect()->route('home');
+        }
+        // file 方法访问上传文件，返回 Symfony\Component\HttpFoundation\File\UploadedFile 类的一个实例
+        $studentFile = $request->file('studentFile');
+        // dd($studentFile->getPathname());
+        // 使用 isValid 方法判断文件在上传过程中是否出错
+        if (!$studentFile->isValid()) {
+            return redirect()->route('home');
+        }
+
+        $studentContent = fopen($studentFile->getPathname(), "r");
+        while(!feof($studentContent)) {
+            $str = fgets($studentContent);
             if (!empty($str)) {
                 $arr = explode(" ", $str);
 
@@ -37,16 +45,23 @@ class CensusController extends Controller
                 } 
             }
         }
-        fclose($studentFile);
+        fclose($studentContent);
         return redirect()->route('home');
     }
 
-    public function courseInfo()
+    public function courseInfo(Request $request)
     {
-        $course_dir = public_path() . "\data\courseInfo.txt";
-        $courseFile = fopen($course_dir, "r");
-        while(!feof($courseFile)) {
-            $str = fgets($courseFile);
+        if (!$request->hasFile('courseFile')) {
+            return redirect()->route('home');
+        }
+        $courseFile = $request->file('courseFile');
+        if (!$courseFile->isValid()) {
+            return redirect()->route('home');
+        }
+
+        $courseContent = fopen($courseFile->getPathname(), "r");
+        while(!feof($courseContent)) {
+            $str = fgets($courseContent);
             if (!empty($str)) {
                 $arr = explode(" ", $str);
 
@@ -64,7 +79,7 @@ class CensusController extends Controller
                 }
             }
         }
-        fclose($courseFile);
+        fclose($courseContent);
         return redirect()->route('home');
     }
 }

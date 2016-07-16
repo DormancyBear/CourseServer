@@ -10,13 +10,22 @@
                 <div class="panel-body">
                     <p>本系统只提供了课表的相关操作功能，</p>
                     <p>而涉及具体的学生信息以及课程信息则通过文件的形式导入到Mysql数据库中，</p>
-                    <p>请仅在需要更新数据时进行此操作（不要重复导入数据）。</p>
+                    <p>学生信息文件每行的格式是："stuid name password"，示例文件 public\data\studentInfo.txt</p>
+                    <p>课程信息文件每行的格式是："courseid name teacher week start end"，示例文件 CourseServer\public\data\courseInfo.txt</p>
                 </div>
                 <!-- List group -->
                 <ul class="list-group">
                     <li class="list-group-item">
-                        <p>学生信息由 CourseServer\public\data\studentInfo.txt 文件提供</p>
-                        <a class="btn btn-default" href="{{ route('studentInfo') }}" role="button">导入学生信息</a>
+                        <!-- enctype 属性规定在发送到服务器之前应该如何对表单数据进行编码=>encrypt type -->
+                        <!-- multipart/form-data 表示不对字符编码，在使用包含文件上传控件的表单时，必须使用该值。-->
+                        <form class="form-inline" method="POST" action="{{ route('studentInfo') }}" enctype="multipart/form-data">
+                            {{ csrf_field() }}
+                            <div class="form-group">
+                                <label for="dir1">学生信息文件</label>
+                                <input type="file" class="form-control" id="dir1" name="studentFile">
+                            </div>
+                            <button type="submit" class="btn btn-default">导入学生信息</button>
+                        </form>
                     </li>
                     <li class="list-group-item">
                     @if(isset($initialStudents))
@@ -51,8 +60,14 @@
                     </li>
 
                     <li class="list-group-item">
-                        <p>课程信息由 CourseServer\public\data\courseInfo.txt 文件提供</p>
-                        <a class="btn btn-default" href="{{ route('courseInfo') }}" role="button">导入课程信息</a>
+                        <form class="form-inline" method="POST" action="{{ route('courseInfo') }}" enctype="multipart/form-data">
+                            {{ csrf_field() }}
+                            <div class="form-group">
+                                <label for="dir2">课程信息文件</label>
+                                <input type="file" class="form-control" id="dir2" name="courseFile">
+                            </div>
+                            <button type="submit" class="btn btn-default">导入课程信息</button>
+                        </form>
                     </li>
                     <li class="list-group-item">
                     @if(isset($initialCourses))

@@ -11,8 +11,8 @@
 |
 */
 
-Route::get('/StudentManagementSystem/studentInfo', ['uses' => 'CensusController@studentInfo', 'as' => 'studentInfo']);
-Route::get('/StudentManagementSystem/courseInfo', ['uses' => 'CensusController@courseInfo', 'as' => 'courseInfo']);
+Route::post('/StudentManagementSystem/studentInfo', ['uses' => 'CensusController@studentInfo', 'as' => 'studentInfo']);
+Route::post('/StudentManagementSystem/courseInfo', ['uses' => 'CensusController@courseInfo', 'as' => 'courseInfo']);
 
 Route::get('stuid/{stuid}/password/{password}', 'ApiController@showJson');
 
