@@ -10,6 +10,7 @@ use App\Course;
 use App\Student;
 
 use Illuminate\Database\Eloquent\Collection;
+use Session;    // 导入 Session facade
 
 class HomeController extends Controller
 {
@@ -59,9 +60,14 @@ class HomeController extends Controller
             // push方法附加数据项到集合结尾，这里是将多个一维集合拼接成了多维集合
             $courses->push($course);
         }
+
+        // 将需要的数据保存到 session 中
+        Session::put('stuid', $stuid);
+        Session::put('courses', $courses);
+
         // var_dump($courses);
-        // 通过数组方式将数据传递到视图，在视图中可以使用相应的键来访问数据值
-        return view('home', ['courses' => $courses, 'stuid' => $stuid]);
+        // 重定向到命名路由 home
+        return redirect()->route('home');
     }
 
     public function deleteCourse($stuid, $courseid)
@@ -83,23 +89,27 @@ class HomeController extends Controller
             // push方法附加数据项到集合结尾，这里是将多个一维集合拼接成了多维集合
             $students->push($student);
         }
-        // 通过数组方式将数据传递到视图，在视图中可以使用相应的键来访问数据值
-        return view('home', ['students' => $students, 'courseid' => $courseid]);
+
+        Session::put('courseid', $courseid);
+        Session::put('students', $students);
+        return redirect()->route('home');
     }
 
     public function queryStuidNumber(Request $request)
     {
         $stuid = $request->input('stuid');
         $coursesNum = Timetable::where('stuid', '=', $stuid)->count();
-        
-        return view('home', ['coursesNum' => $coursesNum]);
+
+        Session::put('coursesNum', $coursesNum);
+        return redirect()->route('home');
     }
 
     public function queryCourseidNumber(Request $request)
     {
         $courseid = $request->input('courseid');
         $studentsNum = Timetable::where('courseid', '=', $courseid)->count();
-        
-        return view('home', ['studentsNum' => $studentsNum]);
+
+        Session::put('studentsNum', $studentsNum);
+        return redirect()->route('home');
     }
 }
