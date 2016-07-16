@@ -26,7 +26,7 @@ class CensusController extends Controller
         if (!$studentFile->isValid()) {
             return redirect()->route('home');
         }
-
+        // SplFileInfo::getPathname — php 自带函数, Gets the path to the file
         $studentContent = fopen($studentFile->getPathname(), "r");
         while(!feof($studentContent)) {
             $str = fgets($studentContent);
