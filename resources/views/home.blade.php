@@ -156,7 +156,8 @@
                         </form>
                     </li>
                     <li class="list-group-item">
-                    @if (session('courses'))
+                    <!-- pull 方法从 Session 取回对象，并删除 -->
+                    @if ($courses = Session::pull('courses'))
                         <div class="panel panel-default">
                             <div class="panel-heading">课程列表</div>
                             <div class="panel-body">
@@ -174,7 +175,7 @@
                                     <!-- Table Body -->
                                     <tbody>
                                     <!-- 全局函数 session 用于获取 Session 值 -->
-                                    @foreach (session('courses') as $course)
+                                    @foreach ($courses as $course)
                                         <tr>
                                             <td class="table-text">
                                                 <div>{{ $course->courseid }}</div>
@@ -195,7 +196,7 @@
                                                 <div>{{ $course->end }}</div>
                                             </td>
                                             <td>
-                                                <form action="{{ route('delete', ['stuid'=>session('stuid'), 'courseid'=>$course->courseid]) }}" method="POST">
+                                                <form action="{{ route('delete', ['stuid'=>Session::pull('stuid'), 'courseid'=>$course->courseid]) }}" method="POST">
                                                     {{ csrf_field() }}
 
                                                     <!-- 伪造DELETE请求 -->
@@ -221,7 +222,7 @@
                         </form>
                     </li>
                     <li class="list-group-item">
-                    @if (session('students'))
+                    @if ($students = Session::pull('students'))
                         <div class="panel panel-default">
                             <div class="panel-heading">学生列表</div>
                             <div class="panel-body">
@@ -234,7 +235,7 @@
                                     </thead>
                                     <!-- Table Body -->
                                     <tbody>
-                                    @foreach (session('students') as $student)
+                                    @foreach ($students as $student)
                                         <tr>
                                             <td class="table-text">
                                                 <div>{{ $student->stuid }}</div>
@@ -243,7 +244,7 @@
                                                 <div>{{ $student->name }}</div>
                                             </td>
                                             <td>
-                                                <form action="{{ route('delete', ['stuid'=>$student->stuid, 'courseid'=>session('courseid')]) }}" method="POST">
+                                                <form action="{{ route('delete', ['stuid'=>$student->stuid, 'courseid'=>Session::pull('courseid')]) }}" method="POST">
                                                     {{ csrf_field() }}
 
                                                     <!-- 伪造DELETE请求 -->
@@ -281,9 +282,9 @@
                         </form>
                     </li>
                     <li class="list-group-item">
-                    @if (session('coursesNum'))
+                    @if ($coursesNum = Session::pull('coursesNum'))
                         <div class="alert alert-success" role="alert">
-                            <p>该学生共有 {{ session('coursesNum') }} 门课。</p>
+                            <p>该学生共有 {{ $coursesNum }} 门课。</p>
                         </div>
                     @endif
                     </li>
@@ -297,9 +298,9 @@
                         </form>
                     </li>
                     <li class="list-group-item">
-                    @if (session('studentsNum'))
+                    @if ($studentsNum = Session::pull('studentsNum'))
                         <div class="alert alert-success" role="alert">
-                            <p>该门课共有 {{ session('tudentsNum') }} 个学生。</p>
+                            <p>该门课共有 {{ $studentsNum }} 个学生。</p>
                         </div>
                     @endif    
                     </li>

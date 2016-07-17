@@ -39,12 +39,21 @@ class HomeController extends Controller
 
     public function add(Request $request)
     {
+        // validate方法验证失败=>重定向至用户上一个页面，错误信息一次性暂存到 session 中(每次请求的所有视图中总是存在一个$errors变量)
+        $this->validate($request, [
+            // 用户输入的 stuid 值需存在于 students 这个数据表的 stuid 字段中，即：已存在该学生才能给该学生分配课表
+            'stuid'    => 'exists:students,stuid',
+            'courseid' => 'exists:courses,courseid',
+        ]);
+        // dd('执行到了这里...');
+
         $timetable = new Timetable;
         $timetable->stuid = $request->stuid;
         $timetable->courseid = $request->courseid;
         $timetable->save();
-        return view('home');
-    }
+        
+        return redirect()->route('home');
+        }
 
     // 通过依赖注入获取当前 HTTP 请求实例
     // 在控制器方法的参数中对 Illuminate\Http\Request 类进行类型提示(Request $request)，当前请求实例会被服务容器自动注入
