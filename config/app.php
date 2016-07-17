@@ -122,7 +122,7 @@ return [
     | this array to grant expanded functionality to your applications.
     |
     */
-
+    // 注册服务提供者
     'providers' => [
 
         /*
@@ -170,7 +170,7 @@ return [
     | the aliases are "lazy" loaded so they don't hinder performance.
     |
     */
-
+    // 注册门面
     'aliases' => [
 
         'App' => Illuminate\Support\Facades\App::class,
