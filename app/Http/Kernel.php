@@ -13,6 +13,7 @@ class Kernel extends HttpKernel
      *
      * @var array
      */
+    // 此数组属性中的所有中间件将在每一个 HTTP 请求期间被执行
     protected $middleware = [
         \Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode::class,
     ];
@@ -22,6 +23,7 @@ class Kernel extends HttpKernel
      *
      * @var array
      */
+    // 给一堆中间件的集合分配一个key，从而让一次分配给路由多个中间件的实现更加简单
     protected $middlewareGroups = [
         'web' => [
             \App\Http\Middleware\EncryptCookies::class,
@@ -45,6 +47,8 @@ class Kernel extends HttpKernel
      *
      * @var array
      */
+    // 为每个准备使用的中间件分配一个简写的key
+    // 只有在此处被定义了，才能在路由中使用 $middleware 键来指定该中间件，如：['middleware' => 'auth']
     protected $routeMiddleware = [
         'auth' => \App\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
