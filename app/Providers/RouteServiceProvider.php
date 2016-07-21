@@ -22,9 +22,10 @@ class RouteServiceProvider extends ServiceProvider
      * @param  \Illuminate\Routing\Router  $router
      * @return void
      */
+    // 依赖注入
     public function boot(Router $router)
     {
-        //
+        // boot 方法会在所有的服务提供者都注册完成后才被调用(所有 ServiceProvider 中的 register 方法都被执行一遍后)
 
         parent::boot($router);
     }

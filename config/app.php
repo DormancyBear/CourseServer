@@ -171,6 +171,7 @@ return [
     |
     */
     // 注册门面
+    // 所有的门面类都存在于全局命名空间
     'aliases' => [
 
         'App' => Illuminate\Support\Facades\App::class,
@@ -196,6 +197,11 @@ return [
         'Redis' => Illuminate\Support\Facades\Redis::class,
         'Request' => Illuminate\Support\Facades\Request::class,
         'Response' => Illuminate\Support\Facades\Response::class,
+        // 首先有一个包含了具体代码的 Router 类 (Illuminate\Routing\Router)
+        // 然后在服务提供者中将这个 Router 类绑定到服务容器 (App\Providers\RouteServiceProvider, 'router' => new Router)
+        // 再创建一个静态指向 Router 类的门面类 Route (vendor/laravel/framework/src/Illuminate/Support/Facades/Route.php)
+        // 该门面类里只有一个 getFacadeAccessor 方法，负责返回上面 Router 类在服务容器中绑定的名称 => 此处为字符串'router'
+        // 最后到配置文件 config/app.php 中注册一下门面类别名即可
         'Route' => Illuminate\Support\Facades\Route::class,
         'Schema' => Illuminate\Support\Facades\Schema::class,
         'Session' => Illuminate\Support\Facades\Session::class,
