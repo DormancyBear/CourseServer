@@ -24,8 +24,11 @@ Route::group(['middleware' => ['web']], function () {
     })->middleware('guest');
 
     // 运行 $php artisan db:seed 命令向 users 表填入管理员的账号(database\seeds\UserTableSeeder)
-    // vendor\laravel\framework\src\Illuminate\Routing\Router::auth()
-    Route::auth();
+    // 此处魔改于 vendor\laravel\framework\src\Illuminate\Routing\Router::auth()
+    // 去除 register 功能
+    Route::get('login', 'Auth\AuthController@showLoginForm');
+    Route::post('login', 'Auth\AuthController@login');
+    Route::get('logout', 'Auth\AuthController@logout');
 
     Route::get('/home', ['uses' => 'HomeController@index', 'as' => 'home']);
     Route::post('/add', ['uses' => 'HomeController@add', 'as' => 'add']);
