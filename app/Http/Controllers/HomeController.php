@@ -21,6 +21,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
+        // 在控制器的构造函数中使用 middleware 方法分配中间件给该控制器
         $this->middleware('auth');
     }
 

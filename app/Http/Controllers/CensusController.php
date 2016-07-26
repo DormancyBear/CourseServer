@@ -13,6 +13,12 @@ use Illuminate\Database\QueryException;
 
 class CensusController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function studentInfo(Request $request)
     {
         // 使用 hasFile 方法判断文件在请求中是否存在
