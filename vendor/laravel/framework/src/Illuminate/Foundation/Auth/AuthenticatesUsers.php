@@ -27,6 +27,7 @@ trait AuthenticatesUsers
      */
     public function showLoginForm()
     {
+        // property_exists => php函数,检查指定类(或对象)中是否包含给定属性
         $view = property_exists($this, 'loginView')
                     ? $this->loginView : 'auth.authenticate';
 

@@ -35,6 +35,10 @@ class AuthController extends Controller
     // 此函数用于获取登录用的用户名字段(标识用户)
     protected $username = 'name';
 
+    // Illuminate\Foundation\Auth\AuthenticatesUsers@showLoginForm
+    // 此函数用于指定登录视图
+    protected $loginView = 'login';
+
     /**
      * Create a new authentication controller instance.
      *
