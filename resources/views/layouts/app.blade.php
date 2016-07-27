@@ -209,7 +209,7 @@
     <header class="navbar navbar-fixed-top navbar-shadow">
       <div class="navbar-branding">
         <a class="navbar-brand" href="{{ url('/home') }}">
-          <b>课表查询系统</b>
+          <b>课表查询</b>系统
         </a>
         <span id="toggle_sidemenu_l" class="ad ad-lines"></span>
       </div>
@@ -263,7 +263,7 @@
         <ul class="nav sidebar-menu">
           <li class="sidebar-label pt20">初始化工作</li>
           <li class="active">
-            <a href="pages_calendar.html">
+            <a href="#import_anchor">
               <span class="glyphicon glyphicon-home"></span>
               <span class="sidebar-title">导入信息</span>
               <span class="sidebar-title-tray">
@@ -272,7 +272,7 @@
             </a>
           </li>
           <li>
-            <a href="../README/index.html">
+            <a href="#type_anchor">
               <span class="glyphicon glyphicon-book"></span>
               <span class="sidebar-title">课表录入</span>
             </a>
@@ -286,11 +286,11 @@
             </a>
             <ul class="nav sub-nav">
               <li>
-                <a href="admin_plugins-panels.html">
+                <a href="#query_stuid_anchor">
                   <span class="glyphicon glyphicon-book"></span> 查询指定学生所有课程 </a>
               </li>
               <li>
-                <a href="admin_plugins-modals.html">
+                <a href="#query_courseid_anchor">
                   <span class="glyphicon glyphicon-modal-window"></span> 查询指定课程所有学生 </a>
               </li>
             </ul>
@@ -303,11 +303,11 @@
             </a>
             <ul class="nav sub-nav">
               <li>
-                <a href="admin_forms-elements.html">
+                <a href="#query_stuid_number_anchor">
                   <span class="glyphicon glyphicon-shopping-cart"></span> 统计指定学生所有课程数 </a>
               </li>
               <li>
-                <a href="admin_forms-widgets.html">
+                <a href="#query_courseid_number_anchor">
                   <span class="glyphicon glyphicon-calendar"></span> 统计指定课程所有学生数 </a>
               </li>
             </ul>
@@ -332,6 +332,38 @@
     <!-- Start: Content-Wrapper -->
     <section id="content_wrapper">
 
+      <!-- Start: Topbar -->
+      <header id="topbar" class="alt">
+        <div class="topbar-left">
+          <ol class="breadcrumb">
+            <li class="crumb-active">
+              <a href="{{ url('/home') }}">Dashboard</a>
+            </li>
+            <li class="crumb-icon">
+              <a href="{{ url('/home') }}">
+                <span class="glyphicon glyphicon-home"></span>
+              </a>
+            </li>
+            <li class="crumb-link">
+              <a href="{{ url('/home') }}">Home</a>
+            </li>
+            <li class="crumb-trail">Dashboard</li>
+          </ol>
+        </div>
+        <div class="topbar-right">
+          <div class="ib">
+            <label for="topbar-multiple" class="control-label pr10 fs11 text-muted">简介信息</label>
+          </div>
+          <div class="ml15 ib va-m" id="toggle_sidemenu_r">
+            <a href="#" class="pl5">
+              <i class="fa fa-sign-in fs22 text-primary"></i>
+              <span class="badge badge-danger badge-hero">戳</span>
+            </a>
+          </div>
+        </div>
+      </header>
+      <!-- End: Topbar -->
+
       <!-- Begin: Content -->
       <section id="content" class="table-layout animated fadeIn">
 
@@ -348,7 +380,7 @@
             <span class="footer-legal">© 2016 课表查询系统</span>
           </div>
           <div class="col-md-6 text-right">
-            <span class="footer-meta">60GB of <b>350GB</b> Free</span>
+            <span class="footer-meta"><b>DormancyBear</b> Edit</span>
             <a href="#content" class="footer-return-top">
               <span class="fa fa-arrow-up"></span>
             </a>
@@ -367,76 +399,49 @@
       <div class="sidebar-right-content nano-content">
 
         <div class="tab-block sidebar-block br-n">
-          <ul class="nav nav-tabs tabs-border nav-justified hidden">
-            <li class="active">
-              <a href="#sidebar-right-tab1" data-toggle="tab">Tab 1</a>
-            </li>
-            <li>
-              <a href="#sidebar-right-tab2" data-toggle="tab">Tab 2</a>
-            </li>
-            <li>
-              <a href="#sidebar-right-tab3" data-toggle="tab">Tab 3</a>
-            </li>
-          </ul>
           <div class="tab-content br-n">
             <div id="sidebar-right-tab1" class="tab-pane active">
 
-              <h5 class="title-divider text-muted mb20"> Server Statistics
-                <span class="pull-right"> 2013
+              <h5 class="title-divider text-muted mb20"> 项目简介
+                <span class="pull-right"> 2016
                   <i class="fa fa-caret-down ml5"></i>
                 </span>
               </h5>
-              <div class="progress mh5">
-                <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 44%">
-                  <span class="fs11">DB Request</span>
-                </div>
-              </div>
-              <div class="progress mh5">
-                <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 84%">
-                  <span class="fs11 text-left">Server Load</span>
-                </div>
-              </div>
-              <div class="progress mh5">
-                <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 61%">
-                  <span class="fs11 text-left">Server Connections</span>
-                </div>
-              </div>
 
-              <h5 class="title-divider text-muted mt30 mb10">Traffic Margins</h5>
+              <h5 class="title-divider text-muted mt30 mb10">使用限制</h5>
+                <h4 class="text-primary mn pl5">本系统只能修改课表信息，其他学生及课程信息通过文件导入</h4>
+
+
+              <h5 class="title-divider text-muted mt25 mb10">项目构成</h5>
+                <h4 class="text-success-dark mn">
+                    整个项目由教科办使用的Web端及学生使用的Android端构成，
+                </h4>
+                <h4 class="text-success-dark mn">
+                    Android端取得数据的接口API为：
+                </h4>
+                <h4 class="text-success-dark mn">
+                    /stuid/{stuid}/password/{password}
+                </h4>
+
+              <h5 class="title-divider text-muted mt25 mb10">开发者</h5>
               <div class="row">
                 <div class="col-xs-5">
-                  <h3 class="text-primary mn pl5">132</h3>
+                  <h4 class="text-primary mn pl5">Web端</h4>
                 </div>
                 <div class="col-xs-7 text-right">
-                  <h3 class="text-success-dark mn">
-                    <i class="fa fa-caret-up"></i> 13.2% </h3>
+                  <h4 class="text-success-dark mn">DormancyBear</h4>
                 </div>
-              </div>
-
-              <h5 class="title-divider text-muted mt25 mb10">Database Request</h5>
-              <div class="row">
                 <div class="col-xs-5">
-                  <h3 class="text-primary mn pl5">212</h3>
+                  <h4 class="text-primary mn pl5">Android端</h4>
+                  <i class="text-danger mn">(未放上代码)</i>
                 </div>
                 <div class="col-xs-7 text-right">
-                  <h3 class="text-success-dark mn">
-                    <i class="fa fa-caret-up"></i> 25.6% </h3>
+                  <h4 class="text-success-dark mn">Xu</h4>
                 </div>
               </div>
 
-              <h5 class="title-divider text-muted mt25 mb10">Server Response</h5>
-              <div class="row">
-                <div class="col-xs-5">
-                  <h3 class="text-primary mn pl5">82.5</h3>
-                </div>
-                <div class="col-xs-7 text-right">
-                  <h3 class="text-danger mn">
-                    <i class="fa fa-caret-down"></i> 17.9% </h3>
-                </div>
-              </div>
-
-              <h5 class="title-divider text-muted mt40 mb20"> Server Statistics
-                <span class="pull-right text-primary fw600">USA</span>
+              <h5 class="title-divider text-muted mt40 mb20"> O(∩_∩)O~
+                <span class="pull-right text-primary fw600">Orz</span>
               </h5>
 
 

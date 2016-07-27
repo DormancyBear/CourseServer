@@ -6,7 +6,9 @@
         <div class="col-md-10 col-md-offset-1">
             
             <div class="panel panel-default">
-                <div class="panel-heading">初始化工作</div>
+                <div class="panel-heading">
+                    <a name="import_anchor">初始化工作</a>
+                </div>
                 <div class="panel-body">
                     <p>本系统只提供了课表的相关操作功能，</p>
                     <p>而涉及具体的学生信息以及课程信息则通过文件的形式导入到Mysql数据库中，</p>
@@ -115,7 +117,9 @@
             </div>
 
             <div class="panel panel-default">
-                <div class="panel-heading">课表的录入</div>
+                <div class="panel-heading">
+                    <a name="type_anchor">课表的录入</a>
+                </div>
                 <div class="panel-body">
                     <p>输入学号及课程号，点击添加即为该学生添加一门课程</p>
                 </div>
@@ -150,7 +154,9 @@
                     <li class="list-group-item">
                         <form class="form-inline" action="{{ route('queryStuid') }}" method="POST">
                             {{ csrf_field() }}
-                            <label for="stuid">学号</label>
+                            <label for="stuid">
+                                <a name="query_stuid_anchor">学号</a>
+                            </label>
                             <input type="text" class="form-control" id="stuid" name="stuid">
                             <button type="submit" class="btn btn-default">查询</button>
                         </form>
@@ -216,7 +222,9 @@
                     <li class="list-group-item">
                         <form class="form-inline" action="{{ route('queryCourseid') }}" method="POST">
                             {{ csrf_field() }}
-                            <label for="courseid">课程编号</label>
+                            <label for="courseid">
+                                <a name="query_courseid_anchor">课程编号</a>
+                            </label>
                             <input type="text" class="form-control" id="courseid" name="courseid">
                             <button type="submit" class="btn btn-default">查询</button>
                         </form>
@@ -276,7 +284,9 @@
                     <li class="list-group-item">
                         <form class="form-inline" action="{{ route('queryStuidNumber') }}" method="POST">
                             {{ csrf_field() }}
-                            <label for="stuid">学号</label>
+                            <label for="stuid">
+                                <a name="query_stuid_number_anchor">学号</a>
+                            </label>
                             <input type="text" class="form-control" id="stuid" name="stuid">
                             <button type="submit" class="btn btn-default">统计</button>
                         </form>
@@ -292,7 +302,9 @@
                     <li class="list-group-item">
                         <form class="form-inline" action="{{ route('queryCourseidNumber') }}" method="POST">
                             {{ csrf_field() }}
-                            <label for="courseid">课程编号</label>
+                            <label for="courseid">
+                                <a name="query_courseid_number_anchor">课程编号</a>
+                            </label>
                             <input type="text" class="form-control" id="courseid" name="courseid">
                             <button type="submit" class="btn btn-default">查询</button>
                         </form>
