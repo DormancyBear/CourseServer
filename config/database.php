@@ -25,7 +25,8 @@ return [
     | you may use many connections at once using the Database library.
     |
     */
-
+    // env 函数获取 .env 文件中设置的变量
+    // 此处为获取环境变量 DB_CONNECTION 的值，若该变量未定义则返回默认值 mysql
     'default' => env('DB_CONNECTION', 'mysql'),
 
     /*
