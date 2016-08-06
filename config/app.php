@@ -38,7 +38,7 @@ return [
     | your application so that it is used when running Artisan tasks.
     |
     */
-
+    // 此值用于 url() 函数生成完整路径
     'url' => env('APP_URL', 'http://localhost'),
 
     /*
